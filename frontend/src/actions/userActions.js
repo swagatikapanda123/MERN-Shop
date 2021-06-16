@@ -146,7 +146,6 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
   }
 }
 
-
 export const updateUserProfile = (user) => async (dispatch, getState) => {
   try {
     dispatch({
@@ -169,6 +168,13 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       type: USER_UPDATE_PROFILE_SUCCESS,
       payload: data,
     })
+
+    dispatch({
+      type: USER_LOGIN_SUCCESS,
+      payload: data,
+    })
+
+    localStorage.setItem('userInfo', JSON.stringify(data))
   } catch (error) {
     const message =
       error.response && error.response.data.message
@@ -183,7 +189,6 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     })
   }
 }
-
 
 export const listUsers = () => async (dispatch, getState) => {
   try {
@@ -222,7 +227,6 @@ export const listUsers = () => async (dispatch, getState) => {
   }
 }
 
-
 export const deleteUser = (id) => async (dispatch, getState) => {
   try {
     dispatch({
@@ -239,7 +243,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
       },
     }
 
-   await axios.delete(`/api/users/${id}`, config)
+    await axios.delete(`/api/users/${id}`, config)
 
     dispatch({
       type: USER_DELETE_SUCCESS,
@@ -254,7 +258,6 @@ export const deleteUser = (id) => async (dispatch, getState) => {
     })
   }
 }
-
 
 export const updateUser = (user) => async (dispatch, getState) => {
   try {
@@ -273,11 +276,11 @@ export const updateUser = (user) => async (dispatch, getState) => {
       },
     }
 
-   const { data } = await axios.put(`/api/users/${user._id}`, user, config)
+    const { data } = await axios.put(`/api/users/${user._id}`, user, config)
 
-    dispatch({type: USER_UPDATE_SUCCESS})
+    dispatch({ type: USER_UPDATE_SUCCESS })
 
-    dispatch({type: USER_DETAILS_SUCCESS, payload: data})
+    dispatch({ type: USER_DETAILS_SUCCESS, payload: data })
   } catch (error) {
     dispatch({
       type: USER_UPDATE_FAIL,
