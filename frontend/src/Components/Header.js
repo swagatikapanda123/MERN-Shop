@@ -23,7 +23,7 @@ const Header = () => {
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
           <Route render={({ history }) => <SearchBox history={history} />} />
-            <Nav className='justify-content-end'>
+            <Nav className='mr-auto'>
               <LinkContainer to='/cart'>
                 <Nav.Link>
                   Cart <i className='fas fa-shopping-cart'></i>
