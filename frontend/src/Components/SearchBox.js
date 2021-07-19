@@ -1,20 +1,20 @@
 import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 
-const SearchBox = ({history}) => {
+const SearchBox = ({ history }) => {
   const [keyword, setKeyword] = useState('')
 
   const submitHandler = (e) => {
-      e.preventDefault()
-      if(keyword.trim()) {
-          history.push(`/search/${keyword}`)
-      } else{
-          history.push('/')
-      }
+    e.preventDefault()
+    if (keyword.trim()) {
+      history.push(`/search/${keyword}`)
+    } else {
+      history.push('/')
+    }
   }
 
   return (
-    <Form onSubmit={submitHandler} inline>
+    <Form onSubmit={submitHandler} style={{ width: '100%' }} inline>
       <Form.Control
         type='text'
         name='q'
@@ -22,7 +22,10 @@ const SearchBox = ({history}) => {
         placeholder='Search products..'
         className='mr-sm-2 ml-sm-5'
       ></Form.Control>
-      <Button type='submit' variant='outline-success' className='p-2'> Search </Button>
+      <Button type='submit' variant='primary' style={{ marginTop: 5 }}>
+        {' '}
+        Search{' '}
+      </Button>
     </Form>
   )
 }
